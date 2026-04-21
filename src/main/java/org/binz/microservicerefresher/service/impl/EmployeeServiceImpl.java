@@ -1,6 +1,7 @@
 package org.binz.microservicerefresher.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.binz.microservicerefresher.exception.ResourceNotFoundException;
 import org.binz.microservicerefresher.model.Employee;
 import org.binz.microservicerefresher.repository.EmployeeRepository;
 import org.binz.microservicerefresher.service.EmployeeService;
@@ -22,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
     }
 
     @Override
